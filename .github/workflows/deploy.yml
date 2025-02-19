@@ -1,0 +1,23 @@
+name: Deploy Django App
+
+on:
+  push:
+    branches:
+      - docker
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/admin/docker- 
+            git pull origin docker
+            docker-compose down
+            docker-compose up -d --build
