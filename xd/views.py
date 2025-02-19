@@ -5,5 +5,6 @@ from django.http import HttpResponse, JsonResponse
 # Create your views here.
 class Test(View):
     def get(self, request, *args, **kwargs):
-        return JsonResponse({"message":"hello world fellas!!!"})
+        print("woooooaaaaa im a fucking crack wow!")
+        return JsonResponse({"message":"hello world fellas!!!","status":200})
         
